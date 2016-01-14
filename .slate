@@ -1,0 +1,174 @@
+# DREW'S SLATE CONFIG
+# Based on several other .slate files posted online. Modified
+# extensively to fit my workflow as a windows-turned-mac user
+# on both a massive 30" monitor and a 13" retina macbook.
+
+# CTRL+ALT+CMD "Thirds/Sixths" Commands
+################################
+# |. . .|. . . .|. . .|
+# |     |       |     |
+# |left | down  |right|
+# |     |       |     |
+# |. . .|. . . .|. . .|
+#
+# up => fullscreen
+#
+# |. . .|. . . .|. . .|
+# |     |       |     |
+# |num4 | num5  | num6|
+# |     |       |     |
+# |. . .|. . . .|. . .|
+# 
+# |num7 |  num8 | num9|
+# |. . .|. . . .|. . .|
+# |-----|-------|-----|
+# |. . .|. . . .|. . .|
+# |num1 |  num2 | num3|
+
+# CTRL+CMD "Sixths" Commands
+################################
+# |left |       |  up |
+# |. . .|. . . .|. . .|
+# |-----|-------|-----|
+# |. . .|. . . .|. . .|
+# |down |       |right|
+
+# Global configs
+# See https://github.com/jigish/slate/wiki/Global-Configs
+
+config defaultToCurrentScreen true
+config secondsBeforeRepeat 0.4
+config secondsBetweenRepeat 0.1
+config keyboardLayout "qwerty"
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+
+# Screen coord aliases
+
+alias xo screenOriginX
+alias yo screenOriginY
+alias wt screenSizeX
+alias ht (screenSizeY-32)
+alias winX windowTopLeftX
+alias winY windowTopLeftY
+alias winW windowSizeX
+alias winH windowSizeY
+
+# Move aliases
+
+alias win-full move ${xo};${yo} ${wt};${ht}
+
+alias win-thirds-left move   ${xo};${yo}              ${wt}*3/10;${ht}
+alias win-thirds-mid move    ${xo}+${wt}*3/10;${yo}   ${wt}*4/10;${ht}
+alias win-thirds-right move  ${xo}+${wt}*7/10;${yo}   ${wt}*3/10;${ht}
+
+alias win-halves-left move   ${xo};${yo}          ${wt}/2;${ht}
+alias win-halves-right move  ${xo}+${wt}/2;${yo}  ${wt}/2;${ht}
+
+alias win-halves-top move    ${xo};${yo}          ${wt};${ht}/2
+alias win-halves-btm move    ${xo};${yo}+${ht}/2  ${wt};${ht}/2
+
+alias win-fourths-topleft  move  ${xo};${yo}                  ${wt}/2;${ht}/2
+alias win-fourths-btmleft  move  ${xo};${yo}+${ht}/2          ${wt}/2;${ht}/2
+alias win-fourths-topright move  ${xo}+${wt}/2;${yo}          ${wt}/2;${ht}/2
+alias win-fourths-btmright move  ${xo}+${wt}/2;${yo}+${ht}/2  ${wt}/2;${ht}/2
+
+alias win-sixths-topleft move   ${xo};${yo}                    ${wt}*3/10;${ht}/2
+alias win-sixths-topmid move    ${xo}+${wt}*3/10;${yo}         ${wt}*4/10;${ht}/2
+alias win-sixths-topright move  ${xo}+${wt}*7/10;${yo}         ${wt}*3/10;${ht}/2
+alias win-sixths-btmleft move   ${xo};${yo}+${ht}/2            ${wt}*3/10;${ht}/2
+alias win-sixths-btmmid move    ${xo}+${wt}*3/10;${yo}+${ht}/2 ${wt}*4/10;${ht}/2
+alias win-sixths-btmright move  ${xo}+${wt}*7/10;${yo}+${ht}/2 ${wt}*3/10;${ht}/2
+
+alias win-eighths-top-left-left   move ${xo}+${wt}*0/4;${yo}          ${wt}/4;${ht}/2
+alias win-eighths-top-left-mid    move ${xo}+${wt}*1/4;${yo}          ${wt}/4;${ht}/2
+alias win-eighths-top-right-mid   move ${xo}+${wt}*2/4;${yo}          ${wt}/4;${ht}/2
+alias win-eighths-top-right-right move ${xo}+${wt}*3/4;${yo}          ${wt}/4;${ht}/2
+alias win-eighths-btm-left-left   move ${xo}+${wt}*0/4;${yo}+${ht}/2  ${wt}/4;${ht}/2
+alias win-eighths-btm-left-mid    move ${xo}+${wt}*1/4;${yo}+${ht}/2  ${wt}/4;${ht}/2
+alias win-eighths-btm-right-mid   move ${xo}+${wt}*2/4;${yo}+${ht}/2  ${wt}/4;${ht}/2
+alias win-eighths-btm-right-right move ${xo}+${wt}*3/4;${yo}+${ht}/2  ${wt}/4;${ht}/2
+
+alias win-fourths-left-left    move ${xo}+${wt}*0/4;${yo}          ${wt}/4;${ht}
+alias win-fourths-left-mid     move ${xo}+${wt}*1/4;${yo}          ${wt}/4;${ht}
+alias win-fourths-right-mid    move ${xo}+${wt}*2/4;${yo}          ${wt}/4;${ht}
+alias win-fourths-right-right  move ${xo}+${wt}*3/4;${yo}          ${wt}/4;${ht}
+alias win-fourths-top-mid      move ${xo}+${wt}*1/4;${yo}          ${wt}/2;${ht}/2
+alias win-fourths-btm-mid      move ${xo}+${wt}*1/4;${yo}+${ht}/2  ${wt}/2;${ht}/2
+
+alias expand-horiz-tenth move ${winX}-${wt}/40;${winY} min({${winW}+${wt}/20,${wt}});${winH}
+alias shrink-horiz-tenth resize -5% +0
+
+# Multi-key aliases
+
+alias mod-CAC  ctrl;alt;cmd
+alias mod-SAC  shift;alt;cmd
+alias mod-CC   ctrl;cmd
+alias mod-SC   shift;cmd
+alias mod-AC   alt;cmd
+
+
+# Key bindings
+
+bind right:${mod-CAC}  ${win-thirds-right}
+bind left:${mod-CAC}   ${win-thirds-left}
+bind up:${mod-CAC}     ${win-full}
+bind down:${mod-CAC}   ${win-thirds-mid}
+
+bind right:${mod-CC}   ${win-sixths-btmright}
+bind left:${mod-CC}    ${win-sixths-topleft}
+bind up:${mod-CC}      ${win-sixths-topright}
+bind down:${mod-CC}    ${win-sixths-btmleft}
+
+bind pad1:${mod-CAC}    ${win-sixths-btmleft}
+bind pad2:${mod-CAC}    ${win-sixths-btmmid}
+bind pad3:${mod-CAC}    ${win-sixths-btmright}
+bind pad7:${mod-CAC}    ${win-sixths-topleft}
+bind pad8:${mod-CAC}    ${win-sixths-topmid}
+bind pad9:${mod-CAC}    ${win-sixths-topright}
+
+bind pad4:${mod-CAC}   ${win-thirds-left}
+bind pad5:${mod-CAC}   ${win-thirds-mid}
+bind pad6:${mod-CAC}   ${win-thirds-right}
+
+bind right:${mod-SAC}  ${win-halves-right}
+bind left:${mod-SAC}   ${win-halves-left}
+bind up:${mod-SAC}     ${win-halves-top}
+bind down:${mod-SAC}   ${win-halves-btm}
+
+bind right:${mod-SC}   ${win-fourths-btmright}
+bind left:${mod-SC}    ${win-fourths-topleft}
+bind up:${mod-SC}      ${win-fourths-topright}
+bind down:${mod-SC}    ${win-fourths-btmleft}
+
+bind pad7:${mod-SAC}   ${win-eighths-top-left-left}
+bind pad8:${mod-SAC}       ${win-eighths-top-left-mid}
+bind pad9:${mod-SAC}       ${win-eighths-top-right-mid}
+bind pad-:${mod-SAC}       ${win-eighths-top-right-right}
+bind pad1:${mod-SAC}       ${win-eighths-btm-left-left}
+bind pad2:${mod-SAC}       ${win-eighths-btm-left-mid}
+bind pad3:${mod-SAC}       ${win-eighths-btm-right-mid}
+bind padEnter:${mod-SAC}       ${win-eighths-btm-right-right}
+
+
+bind pad4:${mod-SAC}       ${win-fourths-left-left}
+bind pad5:${mod-SAC}       ${win-fourths-left-mid}
+bind pad6:${mod-SAC}       ${win-fourths-right-mid}
+bind pad+:${mod-SAC}       ${win-fourths-right-right}
+
+bind home:${mod-SAC}       ${win-fourths-top-mid}
+bind end:${mod-SAC}       ${win-fourths-btm-mid}
+
+bind up:${mod-AC}      ${expand-horiz-tenth}
+bind down:${mod-AC}    ${shrink-horiz-tenth}
+bind left:${mod-AC}    push left
+bind right:${mod-AC}   push right
+
+bind /:${mod-CAC}      move windowTopLeftX;windowTopLeftY windowSizeX;windowSizeY next
+
+
+# Snapshots
+
+bind return:${mod-CAC}  snapshot saved_windows save-to-disk
+bind ':${mod-CAC}      activate-snapshot saved_windows
