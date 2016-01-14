@@ -1,22 +1,22 @@
 # DREW'S SLATE CONFIG
 # Based on several other .slate files posted online. Modified
 # extensively to fit my workflow as a windows-turned-mac user
-# on both a massive 30" monitor and a 13" retina macbook.
+# on a 30" monitor / full keyboard and a 13" retina macbook.
 
 # CTRL+ALT+CMD "Thirds/Sixths" Commands
 ################################
 # |. . .|. . . .|. . .|
-# |     |       |     |
+# |. . .|. . . .|. . .|
 # |left | down  |right|
-# |     |       |     |
+# |. . .|. . . .|. . .|
 # |. . .|. . . .|. . .|
 #
 # up => fullscreen
 #
 # |. . .|. . . .|. . .|
-# |     |       |     |
+# |. . .|. . . .|. . .|
 # |num4 | num5  | num6|
-# |     |       |     |
+# |. . .|. . . .|. . .|
 # |. . .|. . . .|. . .|
 # 
 # |num7 |  num8 | num9|
@@ -27,11 +27,46 @@
 
 # CTRL+CMD "Sixths" Commands
 ################################
-# |left |       |  up |
+# |left |. . . .|  up |
 # |. . .|. . . .|. . .|
 # |-----|-------|-----|
 # |. . .|. . . .|. . .|
-# |down |       |right|
+# |down |. . . .|right|
+
+# SHIFT+ALT+CMD "Halves/Fourths/Eighths" Commands
+################################
+# | .   up   .  |
+# | .  .  .  .  |
+# |-------------|
+# | .  .  .  .  |
+# | .  down  .  |
+#
+# |. . . .|. . . .|
+# |. . . .|. . . .|
+# | left  | right |
+# |. . . .|. . . .|
+# |. . . .|. . . .|
+#
+# | .   . | .   . | .   . | .   . |
+# | .   . | .   . | .   . | .   . |
+# | num4  | num5  |  num6 |  num+ |
+# | .   . | .   . | .   . | .   . |
+# | .   . | .   . | .   . | .   . |
+#
+# | num7  | num8  |  num9 |  num- |
+# | .   . | .   . | .   . | .   . |
+# |-------|-------|-------|-------|
+# | .   . | .   . | .   . | .   . |
+# | num1  | num2  |  num3 | enter |
+
+
+# SHIFT+CMD "Fourths" Commands
+################################
+# |  left   |    up   |
+# |  .   .  |  .   .  |
+# |---------|---------|
+# |  .   .  |  .   .  |
+# |  down   |  right  |
 
 # Global configs
 # See https://github.com/jigish/slate/wiki/Global-Configs
