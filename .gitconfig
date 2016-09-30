@@ -1,0 +1,34 @@
+[branch]
+	autosetuprebase = always
+
+[alias]
+	gui = !sh -c /usr/local/opt/git/libexec/git-core/git-gui
+	lg = log --color --graph --branches --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        hist = !gitk --all --simplify-merges
+        histmp = !gitk --branches=[!/] --simplify-merges
+        preship = log origin/production.. --pretty=format:"%h%x09%an%x09%ad%x09%s"
+        toship = diff --stat origin/production
+        since = !sh -c 'git log $1.. --pretty=format:"%h%x09%an%x09%ad%x09%s"' -
+        last = log HEAD~1.. --pretty=format:"%h%x09%an%x09%ad%x09%s"
+        uncommit = reset --soft HEAD~1
+        co = checkout
+        com = checkout master
+        cop = checkout production
+        cob = checkout -b
+	st = stash
+	stp = stash pop
+        br = branch
+        newb = checkout -b
+        delb = branch -D
+        s = status
+        chp = cherry-pick
+	push-m = push origin master
+	push-p = push origin production        
+        smu = submodule update
+        sm = submodule
+
+[user]
+	email = drew@nylas.com
+	name = Drew Regitsky
+[core]
+	editor = nano
