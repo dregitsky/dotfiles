@@ -27,8 +27,5 @@
         smu = submodule update
         sm = submodule
 
-[user]
-	email = drew@nylas.com
-	name = Drew Regitsky
 [core]
 	editor = nano
