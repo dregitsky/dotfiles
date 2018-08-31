@@ -3,11 +3,14 @@
 
 [alias]
 	gui = !sh -c /usr/local/opt/git/libexec/git-core/git-gui
+	g = !sh -c /usr/local/opt/git/libexec/git-core/git-gui
 	lg = log --color --graph --branches --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
         hist = !gitk --all --simplify-merges
+        h = !gitk --all --simplify-merges
         histmp = !gitk --branches=[!/] --simplify-merges
         preship = log origin/production.. --pretty=format:"%h%x09%an%x09%ad%x09%s"
         toship = diff --stat origin/production
+        compare = diff --stat
         since = !sh -c 'git log $1.. --pretty=format:"%h%x09%an%x09%ad%x09%s"' -
         last = log HEAD~1.. --pretty=format:"%h%x09%an%x09%ad%x09%s"
         uncommit = reset --soft HEAD~1
@@ -17,8 +20,6 @@
         cob = checkout -b
 	st = stash
 	stp = stash pop
-        rb = rebase
-        rb-m = rebase origin/master
         br = branch
         newb = checkout -b
         delb = branch -D
@@ -26,8 +27,24 @@
         chp = cherry-pick
 	push-m = push origin master
 	push-p = push origin production        
+        push-b = !sh -c 'git push origin $(git branch-name)'
+        push-b-f = !sh -c 'git push origin $(git branch-name) -f'
         smu = submodule update
         sm = submodule
+	rb = rebase
+        rb-m = rebase origin/master
+        rb-b = !sh -c 'git rebase origin/$(git branch-name)' -
+	search = !sh -c 'git rev-list --all | xargs git grep' -
+        f = fetch
+        recover = !gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )        
+        standup = log --since=7.days --author=drew
+        brl = !git for-each-ref --sort='-authordate' --format='%(align:50,left)%(refname)%(color:yellow bold) %(HEAD)%(end)%09%(color:reset)%(color:green)%(authordate:relative)%(color:cyan)%09%(objectname:short)%(color:reset)' refs/heads | sed -e 's-refs/heads/--' | nl -w2 -d $'\n' -s')  '
+        col = !sh -c 'git checkout $(git branch-number $1)' -
+
+        branch-name = "!git rev-parse --abbrev-ref HEAD"
+        branch-number = "!git for-each-ref --sort='-authordate' --format='%(refname)' refs/heads | sed -e 's-refs/heads/--' | tail -n +$1 | head -n 1 #"
 
 [core]
 	editor = nano
+[user]
+	name = Drew
