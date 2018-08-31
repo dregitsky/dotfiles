@@ -40,6 +40,7 @@
         standup = log --since=7.days --author=drew
         brl = !git for-each-ref --sort='-authordate' --format='%(align:50,left)%(refname)%(color:yellow bold) %(HEAD)%(end)%09%(color:reset)%(color:green)%(authordate:relative)%(color:cyan)%09%(objectname:short)%(color:reset)' refs/heads | sed -e 's-refs/heads/--' | nl -w2 -d $'\n' -s')  '
         col = !sh -c 'git checkout $(git branch-number $1)' -
+        stl = !git stash list -n 10 --stat --find-renames --pretty=format:'%<(11)%C(bold magenta)%gd%C(reset) %<(10)%C(cyan)%h%C(reset) %<(25)%C(yellow)%cr%C(reset)' | sed -E 's/stash@{([0-9]+)}/\\1:/g' | (echo '\n██████████   GIT STASH (first 10)   ██████████\n' && cat && echo '\n██████████    END STASH CONTENTS    ██████████')
 
         # Quote / unquote a sh command, converting it to / from a git alias string.
         # - Makes writing aliases that parse correctly soo much easier.
