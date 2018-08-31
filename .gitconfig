@@ -41,6 +41,13 @@
         brl = !git for-each-ref --sort='-authordate' --format='%(align:50,left)%(refname)%(color:yellow bold) %(HEAD)%(end)%09%(color:reset)%(color:green)%(authordate:relative)%(color:cyan)%09%(objectname:short)%(color:reset)' refs/heads | sed -e 's-refs/heads/--' | nl -w2 -d $'\n' -s')  '
         col = !sh -c 'git checkout $(git branch-number $1)' -
 
+        # Quote / unquote a sh command, converting it to / from a git alias string.
+        # - Makes writing aliases that parse correctly soo much easier.
+        # - Taken from https://stackoverflow.com/a/39616600/1212203
+        quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+        quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\([\\\"]\\)/\\1/g'; printf \"\\n\" #"
+
+        # Helpers
         branch-name = "!git rev-parse --abbrev-ref HEAD"
         branch-number = "!git for-each-ref --sort='-authordate' --format='%(refname)' refs/heads | sed -e 's-refs/heads/--' | tail -n +$1 | head -n 1 #"
 
