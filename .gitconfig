@@ -17,6 +17,8 @@
         cob = checkout -b
 	st = stash
 	stp = stash pop
+        rb = rebase
+        rb-m = rebase origin/master
         br = branch
         newb = checkout -b
         delb = branch -D
