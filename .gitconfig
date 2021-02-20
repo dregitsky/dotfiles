@@ -5,13 +5,14 @@
     # arc shortcuts
     stack = rebase origin/master -i --exec 'arc diff HEAD^'
     stack-amend = rebase origin/master -i --exec 'arc amend'
+    stack-show = !~/print-diffs-and-commits.py
 
     # shortcuts for builtin git gui tool
     gui = !sh -c /usr/local/opt/git/libexec/git-core/git-gui
-    g = !sh -c /usr/local/opt/git/libexec/git-core/git-gui
+    g = gui
 
     # clean visual summary of history tree
-    lg = log -n 30 --color --graph --branches --all --pretty=format:'%C(cyan)%h%C(reset) -%C(bold red)%d%C(reset) %s %C(green)(%C(reset)%C(bold green)%an%C(reset)%C(green): %cr)' --abbrev-commit
+    lg = log -n 30 --color --graph --branches --branches --remotes --tags --pretty=format:'%C(cyan)%h%C(reset) -%C(bold red)%d%C(reset) %s %C(green)(%C(reset)%C(bold green)%an%C(reset)%C(green): %cr)' --abbrev-commit --notes HEAD
 
     # shortcuts for builtin history viewer gui tool
     hist = !gitk --all --simplify-merges
@@ -77,8 +78,16 @@
     rb--c = rebase --continue
     rb--a = rebase --abort
 
+    # safe hard reset shortcuts
+    reset-m = !sh -c 'git diff-index --quiet HEAD -- && git log HEAD^.. --pretty=format:\"Resetting from %h to origin/master\" && git reset --hard origin/master || echo "Reset aborted, remove or stash unstaged changes first!"'
+    reset-1 = !sh -c 'git diff-index --quiet HEAD -- && git log HEAD^.. --pretty=format:\"Resetting from %h to HEAD~1\" && git reset --hard HEAD^ || echo "Reset aborted, remove or stash unstaged changes first!"'
+
     # Search for a string in commit content (committed code, not the message)
     search = !sh -c 'git rev-list --all | xargs git grep' -
+
+    # Find up to 10 commits matching this text, show by branch. E.g. git find-b "My commit title"
+    find-c = !sh -c 'git log -n 10 --all --grep=\"$@\" --pretty=\"format:%H\"' -
+    find-b = !sh -c 'git find-c \"$1\" | xargs -n 1 -I@ sh -c \"git show -s --format=\\\"%C(cyan bold)%h%C(reset) %s\\\" @ && git branch --contains @\"' -
 
     # pull up git history gui showing dangling commits, to help recover lost commits
     recover = !gitk --all $( git fsck --no-reflog | awk '/dangling commit/ {print $3}' )
@@ -127,6 +136,7 @@
 # Personal settings
 [core]
     editor = nano
+    pager = less -F -X
 [user]
     name = Drew
     email = drew@zensourcer.com
@@ -141,3 +151,6 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[sequence]
+	editor = /Users/drew/interactive-rebase-tool
+
